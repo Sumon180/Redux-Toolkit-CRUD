@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import { editUser } from "./userSlice";
@@ -45,6 +45,9 @@ const EditUser = () => {
         inputProps={{ type: "email", placeholder: "jhondoe@mail.com" }}
       />
       <Button onClick={handleEditUser}>Update</Button>
+      <Link to="/">
+        <Button onClick={handleEditUser}>Go Back</Button>
+      </Link>
     </div>
   );
 };

@@ -1,9 +1,12 @@
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { deleteUser } from "./userSlice";
+import axios from "axios";
 
 const UserList = () => {
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const users = useSelector((store: any) => store.users);
 
@@ -11,8 +14,18 @@ const UserList = () => {
     dispatch(deleteUser({ id }));
   };
 
+  const loadData = async () => {
+    // Get Data
+    const res = await axios.get("http://localhost:8080/");
+    setData(res.data);
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   const renderCard = () =>
-    users.map((user: any) => (
+    data.map((user: any) => (
       <div
         className="bg-gray-300 p-5 flex items-center justify-between"
         key={user.id}
@@ -66,7 +79,7 @@ const UserList = () => {
         <Button>Add User</Button>
       </Link>
       <div className="grid gap-5 md:grid-cols-2">
-        {users.length ? (
+        {data.length ? (
           renderCard()
         ) : (
           <p className="text-center col-span-2 text-gray-700 font-semibold">

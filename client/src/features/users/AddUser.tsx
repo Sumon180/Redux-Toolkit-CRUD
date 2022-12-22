@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
@@ -42,6 +42,9 @@ const AddUser = () => {
         inputProps={{ type: "email", placeholder: "jhondoe@mail.com" }}
       />
       <Button onClick={handleAddUser}>Submit</Button>
+      <Link to="/">
+        <Button>Go Back</Button>
+      </Link>
     </div>
   );
 };
