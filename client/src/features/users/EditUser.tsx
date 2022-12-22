@@ -44,7 +44,7 @@ const EditUser = () => {
         onChange={(e: any) => setValues({ ...values, email: e.target.value })}
         inputProps={{ type: "email", placeholder: "jhondoe@mail.com" }}
       />
-      <Button onClick={handleEditUser}>Edit</Button>
+      <Button onClick={handleEditUser}>Update</Button>
     </div>
   );
 };
