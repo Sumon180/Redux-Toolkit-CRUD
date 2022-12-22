@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import AddUser from "./features/users/AddUser";
 import EditUser from "./features/users/EditUser";
 import UserList from "./features/users/UserList";
@@ -11,6 +13,7 @@ function App() {
         <h1 className="text-center font-bold text-2xl text-gray-700">
           CRUD with redux toolkit
         </h1>
+        <ToastContainer position="top-center" />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<UserList />} />

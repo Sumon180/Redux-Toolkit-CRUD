@@ -1,5 +1,3 @@
-import React from "react";
-
 const TextField = ({ label, inputProps, onChange, value }: any) => {
   return (
     <div className="flex flex-col">

@@ -1,24 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import { editUser } from "./userSlice";
 
+const initialState = {
+  name: "",
+  email: "",
+};
+
 const EditUser = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const users = useSelector((store: any) => store.users);
+  // const users = useSelector((store: any) => store.users);
   const navigate = useNavigate();
-  const existingUser = users.filter((user: any) => user.id === params.id);
-  const { name, email } = existingUser[0];
-  const [values, setValues] = useState({
-    name,
-    email,
-  });
+  // const existingUser = users.filter((user: any) => user.id === params.id);
+  // const {name, email} = existingUser[0];
+  const [values, setValues] = useState(initialState);
+  const { name, email } = values;
+
+  const { id } = useParams(); // for Updating
+
+  // For update Get
+  useEffect(() => {
+    axios.get(`http://localhost:8080/read/${id}`).then((resp) => {
+      setValues({ ...resp.data });
+    });
+  }, [id]);
 
   const handleEditUser = () => {
-    setValues({ name: "", email: "" });
+    // for Updating
+    axios
+      .put(`http://localhost:8080/update/${id}`, {
+        name,
+        email,
+      })
+      .then(() => {
+        setValues({ name: "", email: "" });
+      })
+      .catch((err) => toast.error(err.response.data));
+    toast.success("Contact Updated Successfully");
+
+    setTimeout(() => navigate("/"), 500);
+
     dispatch(
       editUser({
         id: params.id,

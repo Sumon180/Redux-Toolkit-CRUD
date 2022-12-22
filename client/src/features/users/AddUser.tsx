@@ -2,20 +2,40 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
+import axios from "axios";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import { addUser } from "./userSlice";
 
+const initialState = {
+  name: "",
+  email: "",
+};
+
 const AddUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [values, setValues] = useState({
-    name: "",
-    email: "",
-  });
+  const [values, setValues] = useState(initialState);
+  const { name, email } = values;
 
   const handleAddUser = () => {
-    setValues({ name: "", email: "" });
+    if (!name || !email) {
+      toast.error("Please provide input value");
+    } else {
+      axios
+        .post("http://localhost:8080/create", {
+          name,
+          email,
+        })
+        .then(() => {
+          setValues({ name: "", email: "" });
+        })
+        .catch((err) => toast.error(err.response.data));
+      toast.success("Contact Added Successfully");
+      navigate("/");
+    }
+
     dispatch(
       addUser({
         id: uuidv4(),
@@ -23,7 +43,6 @@ const AddUser = () => {
         email: values.email,
       })
     );
-    navigate("/");
   };
 
   return (

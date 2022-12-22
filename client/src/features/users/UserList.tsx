@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 import Button from "../../components/Button";
 import { deleteUser } from "./userSlice";
-import axios from "axios";
 
 const UserList = () => {
   const [data, setData] = useState([]);
@@ -11,6 +12,12 @@ const UserList = () => {
   const users = useSelector((store: any) => store.users);
 
   const handleRemoveUser = (id: any) => {
+    if (window.confirm("Are you Sure delete this?")) {
+      // Delete Data
+      axios.delete(`http://localhost:8080/delete/${id}`);
+      toast.success("Contact Deleted successfully");
+      setTimeout(() => loadData(), 500);
+    }
     dispatch(deleteUser({ id }));
   };
 
