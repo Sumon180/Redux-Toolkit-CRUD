@@ -1,6 +1,6 @@
 
 ## Available Scripts
-
+`Redux, React, TailwindCss,`
 In the project directory, you can run:
 
 ### `npm install`
