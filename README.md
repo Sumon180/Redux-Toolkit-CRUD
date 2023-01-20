@@ -42,7 +42,7 @@ module.exports = {
 ```
 &  
 tailwind.config.cjs file
-```
+```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
@@ -52,8 +52,8 @@ module.exports = {
 };
 ```
 &  
-index.tsx file  
-```
+index.css file  
+```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
