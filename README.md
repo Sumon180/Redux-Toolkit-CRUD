@@ -27,7 +27,7 @@ UUID: https://www.npmjs.com/package/uuid?activeTab=readme
 ### Video Tutorial
 
 You can see my youtube video for this project in [here](https://youtu.be/SgnlgEEkqSo)  
-### Tailwind setup
+### Tailwindcss setup
 
 `npm install -D tailwindcss autoprefixer postcss`  
 &
