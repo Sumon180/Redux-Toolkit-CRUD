@@ -32,7 +32,7 @@ You can see my youtube video for this project in [here](https://youtu.be/SgnlgEE
 `npm install -D tailwindcss autoprefixer postcss`  
 &
 postcss.config.cjs file
-```
+```javascript
 module.exports = {
   plugins: {
     tailwindcss: {},
