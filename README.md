@@ -26,4 +26,35 @@ UUID: https://www.npmjs.com/package/uuid?activeTab=readme
 
 ### Video Tutorial
 
-You can see my youtube video for this project in [here](https://youtu.be/SgnlgEEkqSo)
+You can see my youtube video for this project in [here](https://youtu.be/SgnlgEEkqSo)  
+### Tailwind setup
+
+`npm install -D tailwindcss autoprefixer postcss`  
+&
+postcss.config.cjs file
+```
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+```
+&  
+tailwind.config.cjs file
+```
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  plugins: [],
+};
+```
+&  
+index.tsx file  
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
